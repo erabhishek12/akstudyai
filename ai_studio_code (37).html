@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhi&k study AI - The Definitive AI Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --primary-accent: #00f2fe;
+            --secondary-accent: #ff00c1;
+            --text-primary: #e6edf3;
+            --text-secondary: #7d8590;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --card-bg: #161b22;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            --font-family: 'Poppins', sans-serif;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 0;
+            z-index: 1000;
+            background: rgba(13, 17, 23, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+        .logo-gradient {
+            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: var(--primary-accent);
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 242, 254, 0.1), transparent 70%);
+            transform: translate(-50%, -50%);
+            filter: blur(100px);
+            z-index: -1;
+        }
+        .hero-content {
+            max-width: 800px;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+            color: #000;
+            box-shadow: 0 5px 20px rgba(0, 242, 254, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 0, 193, 0.4);
+        }
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-accent);
+            border-color: var(--primary-accent);
+        }
+        .btn-secondary:hover {
+            background-color: var(--primary-accent);
+            color: var(--bg-color);
+        }
+        
+        .section {
+            padding: 6rem 0;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .section-title p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+        .feature-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        .feature-image {
+            flex: 1;
+            min-height: 300px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .feature-image img {
+            width: 100%;
+            height: 100%;
+            max-height: 380px;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+        }
+        .feature-text {
+            flex: 1;
+        }
+        .feature-text h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-accent);
+        }
+        .feature-text p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .feature-text ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        .feature-text li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        .feature-text li::before {
+            content: '\f26a';
+            font-family: 'bootstrap-icons';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-accent);
+        }
+
+        .tech-stack {
+            text-align: center;
+        }
+        .tech-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        .tech-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .tech-icon:hover {
+            color: var(--text-primary);
+            transform: translateY(-5px);
+        }
+        .tech-icon i {
+            font-size: 3rem;
+            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .tech-icon span {
+            font-weight: 500;
+        }
+
+        .creator-section {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 4rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+        .creator-section img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid var(--primary-accent);
+            margin-bottom: 1.5rem;
+        }
+        .creator-section h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .creator-section p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        .social-links a {
+            font-size: 1.8rem;
+            margin: 0 1rem;
+            color: var(--text-secondary);
+            transition: color 0.3s, transform 0.3s;
+            display: inline-block;
+        }
+        .social-links a:hover {
+            color: var(--primary-accent);
+            transform: translateY(-3px);
+        }
+        
+        .footer {
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 3rem; }
+            .feature-item { flex-direction: column !important; }
+        }
+        @media (max-width: 768px) {
+            .header { padding: 1rem; }
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1rem; }
+            .cta-buttons { flex-direction: column; align-items: center;}
+            .cta-buttons .btn { width: 80%; max-width: 300px;}
+            .section-title h2 { font-size: 2rem; }
+            .feature-item { padding: 1.5rem; gap: 2rem; }
+            .creator-section { padding: 2rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <nav class="container navbar">
+            <a href="#" class="logo">Abhi&k <span class="logo-gradient">study AI</span></a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#tech">Technology</a>
+                <a href="#creator">Creator</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>The Definitive AI Study Partner</h1>
+                <p>A highly-intelligent, feature-packed AI assistant designed for students and developers. Experience seamless interaction, powerful tools, and deep personalization.</p>
+                <div class="cta-buttons">
+                    <a href="https://erabhishek12.github.io/ak-study/" class="btn btn-primary" target="_blank"><i class="bi bi-box-arrow-up-right"></i> Visit Live Demo</a>
+                    <a href="https://study-helper-ai-ten.vercel.app/" class="btn btn-secondary"  target="_blank" "><i class="bi bi-download"></i> Download APK</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>One Application, Limitless Capabilities</h2>
+                    <p>Explore the powerful features that make Abhi&k study AI more than just a chatbot. It's a complete toolkit for learning and creation.</p>
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="feature-image">
+                             <img src="https://i.postimg.cc/8PWvhGJg/IMG-20250914-221802-640.jpg" alt="Screenshot of Gemini Chat Interface">
+                        </div>
+                        <div class="feature-text">
+                            <h3>Advanced Conversational AI</h3>
+                            <p>Powered by Google's cutting-edge Gemini 1.5 Flash model. Get accurate, comprehensive, and well-structured answers for any subject.</p>
+                            <ul>
+                                <li>Multi-key rotation for high availability.</li>
+                                <li>Expert in General Knowledge, Studies, and Programming.</li>
+                                <li>Context-aware conversations to remember past messages.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-image">
+                            <img src="https://i.postimg.cc/Kzkjx7th/IMG-20250914-222132-366.jpg" alt="Screenshot of AI image generation">
+                        </div>
+                        <div class="feature-text">
+                            <h3>AI Image Generation</h3>
+                            <p>Unleash your creativity. Generate stunning, high-quality images directly within the chat using a simple command.</p>
+                            <ul>
+                                <li>Integrated with Stability AI's powerful SD3 model.</li>
+                                <li>Use `/imagine` or `/draw` followed by your prompt.</li>
+                                <li>Download your creations with a single click.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-image">
+                           <img src="https://i.postimg.cc/8PWvhGJg/IMG-20250914-221802-640.jpg" alt="Screenshot of vision Q&A and multimedia support">
+                        </div>
+                        <div class="feature-text">
+                            <h3>Multimedia Interaction</h3>
+                            <p>Communicate in the way that suits you best. The AI understands more than just text, making interaction natural and efficient.</p>
+                            <ul>
+                                <li><strong>Vision Capable:</strong> Upload images and ask questions about them.</li>
+                                <li><strong>Voice-to-Text:</strong> Speak your queries directly using the mic button.</li>
+                                <li><strong>Text-to-Speech:</strong> Listen to the AI's responses out loud.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-image">
+                           <img src="https://i.postimg.cc/hPPFmD3f/IMG-20250914-222333-653.jpg" alt="Screenshot of customization settings">
+                        </div>
+                        <div class="feature-text">
+                            <h3>Deep Personalization</h3>
+                            <p>Make the app truly yours. Customize everything from your profile to the entire visual experience to match your style.</p>
+                            <ul>
+                                <li><strong>User Profiles:</strong> Set your name and profile picture.</li>
+                                <li><strong>Light & Dark Themes:</strong> Switch themes for your viewing comfort.</li>
+                                <li><strong>Live Backgrounds:</strong> Choose from 7+ animated Vanta.js effects.</li>
+                                <li><strong>Custom Wallpapers:</strong> Upload your own background with opacity control.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-image">
+                           <img src="https://i.postimg.cc/nztghpDV/IMG-20250914-222403-788.jpg" alt="Screenshot of a code block with syntax highlighting">
+                        </div>
+                        <div class="feature-text">
+                            <h3>Developer & Power-User Friendly</h3>
+                            <p>Built with developers in mind, the AI provides tools that streamline coding and technical discussions.</p>
+                            <ul>
+                                <li><strong>Markdown Support:</strong> Renders formatted lists, links, and text styles.</li>
+                                <li><strong>Syntax Highlighting:</strong> Code blocks are automatically colored for readability.</li>
+                                <li><strong>One-Click Copy:</strong> Instantly copy code snippets to your clipboard.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tech" class="section">
+            <div class="container tech-stack">
+                <div class="section-title">
+                    <h2>Built With Modern Technology</h2>
+                    <p>Leveraging a robust stack of APIs and libraries to deliver a fast, reliable, and feature-rich experience.</p>
+                </div>
+                <div class="tech-icons">
+                    <div class="tech-icon">
+                        <i class="bi bi-robot"></i>
+                        <span>Google Gemini API</span>
+                    </div>
+                    <div class="tech-icon">
+                        <i class="bi bi-image-fill"></i>
+                        <span>Stability AI API</span>
+                    </div>
+                    <div class="tech-icon">
+                        <i class="bi bi-bootstrap-fill"></i>
+                        <span>Bootstrap 5</span>
+                    </div>
+                    <div class="tech-icon">
+                        <i class="bi bi-stars"></i>
+                        <span>Vanta.js</span>
+                    </div>
+                     <div class="tech-icon">
+                        <i class="bi bi-filetype-js"></i>
+                        <span>Vanilla JS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="creator" class="section">
+            <div class="container">
+                <div class="creator-section">
+                    <img src="https://i.postimg.cc/cLPtsRZk/IMG-20250218-213248.jpg" alt="Developer Abhishek Kumar">
+                    <h3>Developed with ❤️ by Abhishek Kumar</h3>
+                    <p>A passionate developer dedicated to building useful and beautiful applications.</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/naturelensbyabhi" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="https://t.me/lost_life2" target="_blank" title="Telegram"><i class="bi bi-telegram"></i></a>
+                        <a href="https://i-m-er-abhi.vercel.app" target="_blank" title="Portfolio"><i class="bi bi-globe"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Abhi&k study AI. All Rights Reserved. Created by Abhishek Kumar.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
